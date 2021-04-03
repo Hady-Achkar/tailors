@@ -1,0 +1,14 @@
+ body{
+    background: url(1.jpg) no-repeat center;
+    background-size: cover;
+    height: 100vh;
+
+  }
+
+  .container-fluid{
+    background-color: #000;
+    height: 100vh;
+    opacity: .8;
+    position: absolute;
+    
+  
