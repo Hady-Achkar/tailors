@@ -21,6 +21,7 @@ echo "<th style='width:100px;'>Back Size</th>";
 echo "<th style='width:100px;'>Waist Size</th>";
 echo "<th style='width:100px;'>Theigh Size</th>";
 echo "<th style='width:100px;'>Arm Size</th>";
+echo "<th style='width:100px;'>Product Image</th>";
 echo "<th style='width:100px;'>Price</th>";
 echo "<th style='width:100px;'>Delivery Date</th>";
 echo "<th style='width:100px;'>Submit Offer</th>";
@@ -37,13 +38,14 @@ $backSize;
 $waistSize;
 $theighSize;
 $armSize;
+$productImage;
 echo "<tbody>";
 
 while ($contractsRow = mysqli_fetch_assoc($contractsResult)) {
-
     $orderID = $contractsRow['id'];
     $counter = $counter + 1;
     $customerID = $contractsRow['customer_id'];
+    $productImage = $contractsRow['example_img'];
     $measurementsQuery = "SELECT * FROM customer_details WHERE customer_id=$customerID;";
     $measrementsResult = mysqli_query($conn, $measurementsQuery);
     while ($measurementRow = mysqli_fetch_assoc($measrementsResult)) {
@@ -68,6 +70,7 @@ while ($contractsRow = mysqli_fetch_assoc($contractsResult)) {
         echo "<td>$waistSize</td>";
         echo "<td>$theighSize</td>";
         echo "<td>$armSize</td>";
+        echo "<td><a href='./images/uploads/$productImage'>Image</a></td>";
         echo "<td><input type='number' name='price' id='price' required/></td>";
         echo "<td><input type='date' name='delivery' id='delivery' required/></td>";
         echo "<td><input type='submit' name='submit' id='submit' value='submit'/></td>";
