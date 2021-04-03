@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 27, 2021 at 12:37 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Host: localhost
+-- Generation Time: Apr 03, 2021 at 02:38 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -22,6 +23,7 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `tailors_senior` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `tailors_senior`;
+
 -- --------------------------------------------------------
 
 --
@@ -87,16 +89,17 @@ CREATE TABLE `contracts` (
   `tailor_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Pending One',
-  `price` int(11) NOT NULL,
-  `delivery` int(11) NOT NULL
+  `price` int(11) NOT NULL DEFAULT 0,
+  `delivery` int(11) DEFAULT NULL,
+  `example_img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `contracts`
 --
 
-INSERT INTO `contracts` (`id`, `tailor_id`, `customer_id`, `status`, `price`, `delivery`) VALUES
-(13, 63, 3, 'Pending One', 0, 0);
+INSERT INTO `contracts` (`id`, `tailor_id`, `customer_id`, `status`, `price`, `delivery`, `example_img`) VALUES
+(17, 63, 3, 'Pending One', 0, NULL, '1.jpg');
 
 -- --------------------------------------------------------
 
@@ -140,6 +143,13 @@ CREATE TABLE `customer_details` (
   `arm` varchar(255) NOT NULL,
   `theigh` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer_details`
+--
+
+INSERT INTO `customer_details` (`measurement_id`, `chest`, `belly`, `shoulders`, `neck`, `back`, `buttocks`, `waist`, `customer_id`, `arm`, `theigh`) VALUES
+(2, '1', '2', '3', '4', '5', '6', '8', 3, '12', '9');
 
 -- --------------------------------------------------------
 
@@ -354,7 +364,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `contracts`
 --
 ALTER TABLE `contracts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -366,7 +376,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `customer_details`
 --
 ALTER TABLE `customer_details`
-  MODIFY `measurement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `measurement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `fabric`
