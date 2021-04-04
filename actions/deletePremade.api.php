@@ -6,7 +6,7 @@ if (isset($_GET['id'])) {
     if (mysqli_query($conn, $deleteQuery)) {
         header('Location:../admin-panel.php?Premade was deleted successfully');
     } else {
-        header('Location:../admin-panel.php?Internal Server Error');
+        header('Location:../admin-panel.php?Premade cannot be deleted');
     }
 } else {
     header('Location:../index.php');
