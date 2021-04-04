@@ -1,6 +1,4 @@
-
-
-  <?php
+<?php
 session_unset();
 session_destroy();
 session_start();
@@ -21,14 +19,14 @@ if (isset($_POST['submit'])) {
             $getResult = mysqli_stmt_get_result($stmt);
             if ($stmt->affected_rows > 0) {
                 while ($rows = mysqli_fetch_assoc($getResult)) {
-                    if ( password_verify($password, $rows['admin_password'])) {
+                    if (password_verify($password, $rows['admin_password'])) {
                         session_start();
                         $_SESSION['admin'] = true;
-                        $_SESSION['admin_id']=$rows['admin_id'];
+                        $_SESSION['admin_id'] = $rows['admin_id'];
                         $_SESSION['email'] = $rows['admin_email'];
                         $_SESSION['global'] = true;
-                        $_SESSION['login']=true;
-                        $_SESSION['type']="admin";
+                        $_SESSION['login'] = true;
+                        $_SESSION['user_type'] = "admin";
                         header("Location:../admin-panel.php?admin-login=true");
                         exit();
                     } else {
@@ -43,7 +41,3 @@ if (isset($_POST['submit'])) {
 } else {
     header("Location:../index.php");
 }
-
-
-?>
-
