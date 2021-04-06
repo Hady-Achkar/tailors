@@ -1,5 +1,7 @@
 <?php include './header.php'?>
-<?php
+<div class="container-fluid mx-auto" style="min-height: 80vh; background: #ccc;max-width: 1280px;">
+
+  <?php
 $tailorsQuery = "SELECT * FROM tailors;";
 $customerQuery = "SELECT * FROM customers;";
 $premadeQuery = "SELECT * FROM premades;";
@@ -32,15 +34,38 @@ $premadeDescription;
 $premadeTailorName;
 $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
+echo "<div class='container-fluid p-4'>";
+echo "<table class='table'>";
+echo "<thead class='thead-dark'>";
+echo "<tr>";
+echo "<th style='width:100px;'>Tailor ID</th>";
+echo "<th style='width:100px;'>Tailor Name</th>";
+echo "<th style='width:100px;'>Tailor Email</th>";
+echo "<th style='width:100px;'>Tailor Phone</th>";
+echo "<th style='width:100px;'>Tailor Image</th>";
+echo "<th style='width:100px;'>Tailor Address</th>";
+echo "<th style='width:100px;'>Delete Tailor(if possible)</th>";
+echo "</tr>";
+echo "</thead>";
+echo "<tbody style='text-align:center'>";
+
+echo "<h1>Tailors</h1>";
 while ($tailorRow = mysqli_fetch_assoc($tailorsResult)) {
-    echo "<h1>Tailors</h1>";
     $tailorID = $tailorRow['tailor_id'];
     $tailorName = $tailorRow['tailor_name'];
     $tailorEmail = $tailorRow['tailor_email'];
     $tailorPhone = $tailorRow['tailor_phone'];
     $tailorImage = $tailorRow['tailor_img'];
     $tailorAddress = $tailorRow['tailor_address'];
-    echo "<a href='./actions/deleteTailor.api.php?id=$tailorID'>Delete</a>";
+    echo "<tr>";
+    echo "<td>$tailorID</td>";
+    echo "<td>$tailorName</td>";
+    echo "<td>$tailorEmail</td>";
+    echo "<td>$tailorPhone</td>";
+    echo "<td><a href='./images/$tailorImage' target=_blank>Image</a></td>";
+    echo "<td>$tailorAddress</td>";
+    echo "<td><a href='./actions/deleteTailor.api.php?id=$tailorID'>Delete</a></td>";
+    echo "</tr>";
     if (strpos($fullUrl, "Tailor%20cannot%20be%20deleted")) {
         echo '
     <div class="alert alert-danger" role="alert">
@@ -50,15 +75,42 @@ while ($tailorRow = mysqli_fetch_assoc($tailorsResult)) {
     }
 
 }
+echo "
+</tbody>
+</table>
+</div>";
+
+echo "<div class='container-fluid p-4'>";
+echo "<table class='table'>";
+echo "<thead class='thead-dark'>";
+echo "<tr>";
+echo "<th style='width:100px;'>Customer ID</th>";
+echo "<th style='width:100px;'>Customer Name</th>";
+echo "<th style='width:100px;'>Customer Email</th>";
+echo "<th style='width:100px;'>Customer Phone</th>";
+echo "<th style='width:100px;'>Customer Image</th>";
+echo "<th style='width:100px;'>Customer Address</th>";
+echo "<th style='width:100px;'>Delete Customer(if possible)</th>";
+echo "</tr>";
+echo "</thead>";
+echo "<tbody style='text-align:center'>";
+echo "<h1>Customers</h1>";
 while ($customerRow = mysqli_fetch_assoc($customerResult)) {
-    echo "<h1>Customers</h1>";
     $customerID = $customerRow['customer_id'];
     $customerName = $customerRow['customer_name'];
     $customerEmail = $customerRow['customer_email'];
     $customerPhone = $customerRow['customer_phone'];
-    $customerAddress = $customerRow['customer_address'];
     $customerImage = $customerRow['customer_image'];
-    echo "<a href='./actions/deleteCustomer.api.php?id=$customerID'>Delete</a>";
+    $customerAddress = $customerRow['customer_address'];
+    echo "<tr>";
+    echo "<td>$customerID</td>";
+    echo "<td>$customerName</td>";
+    echo "<td>$customerEmail</td>";
+    echo "<td>$customerPhone</td>";
+    echo "<td><a href='./images/$customerImage' target=_blank>Image</a></td>";
+    echo "<td>$customerAddress</td>";
+    echo "<td><a href='./actions/deleteCustomer.api.php?id=$customerID'>Delete</a></td>";
+    echo "</tr>";
     if (strpos($fullUrl, "Customer%20cannot%20be%20deleted")) {
         echo '
       <div class="alert alert-danger" role="alert">
@@ -68,17 +120,48 @@ while ($customerRow = mysqli_fetch_assoc($customerResult)) {
     }
 }
 
+echo "
+</tbody>
+</table>
+</div>";
+
+echo "<div class='container-fluid p-4'>";
+echo "<table class='table'>";
+echo "<thead class='thead-dark'>";
+echo "<tr>";
+echo "<th style='width:100px;'>Premade ID</th>";
+echo "<th style='width:100px;'>Premade Name</th>";
+echo "<th style='width:100px;'>Premade Image</th>";
+echo "<th style='width:100px;'>Premade Price</th>";
+echo "<th style='width:100px;'>Premade Size</th>";
+echo "<th style='width:100px;'>Premade Color</th>";
+echo "<th style='width:100px;'>Premade Description</th>";
+echo "<th style='width:100px;'>Premade Tailor Name</th>";
+echo "<th style='width:100px;'>Delete Premade(if possible)</th>";
+echo "</tr>";
+echo "</thead>";
+echo "<tbody style='text-align:center'>";
+echo "<h1>Premades</h1>";
 while ($premadeRow = mysqli_fetch_assoc($premadesResult)) {
-    echo "<h1>Premades</h1>";
     $premadeID = $premadeRow['premade_id'];
+    $premadeName = $premadeRow['premade_name'];
     $premadeImage = $premadeRow['premade_img'];
     $premadePrice = $premadeRow['premade_price'];
     $premadeSize = $premadeRow['premade_size'];
     $premadeColor = $premadeRow['premade_color'];
-    $premadeName = $premadeRow['premade_name'];
     $premadeDescription = $premadeRow['premade_description'];
     $premadeTailorName = $premadeRow['premade_tailor_name'];
-    echo "<a href='./actions/deletePremade.api.php?id=$premadeID'>Delete</a>";
+    echo "<tr>";
+    echo "<td>$premadeID</td>";
+    echo "<td>$premadeName</td>";
+    echo "<td><a href='./images/$premadeImage' target=_blank>Image</a></td>";
+    echo "<td>$premadePrice</td>";
+    echo "<td>$premadeSize</td>";
+    echo "<td>$premadeColor</td>";
+    echo "<td>$premadeDescription</td>";
+    echo "<td>$premadeTailorName</td>";
+    echo "<td><a href='./actions/deletePremade.api.php?id=$premadeID'>Delete</a></td>";
+    echo "</tr>";
     if (strpos($fullUrl, "Premade%20cannot%20be%20deleted")) {
         echo '
     <div class="alert alert-danger" role="alert">
@@ -88,9 +171,13 @@ while ($premadeRow = mysqli_fetch_assoc($premadesResult)) {
     }
 
 }
+echo "
+</tbody>
+</table>
+</div>";
 ?>
 
-<div class="container" style="height: 80vh; background: #ccc">
+
 
 </div>
 
