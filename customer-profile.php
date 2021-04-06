@@ -72,6 +72,9 @@ while ($row = mysqli_fetch_assoc($customerProfileResult)) {
       </div>
       <div class="form-group px-3">
         <div>
+          <a class="btn btn-secondary float-right" href="./premade-orders.php">Premade Orders</a>
+        </div>
+        <div>
           <a class="btn btn-secondary float-right" href="./pending-contracts.php">Approved Orders</a>
         </div>
         <div>
