@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 03, 2021 at 02:38 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.1.33
+-- Host: 127.0.0.1
+-- Generation Time: Apr 06, 2021 at 11:31 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -56,6 +55,13 @@ CREATE TABLE `cart_items` (
   `quantity` int(11) DEFAULT NULL,
   `tailor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart_items`
+--
+
+INSERT INTO `cart_items` (`cart_items_id`, `customer_id`, `premade_id`, `quantity`, `tailor_id`) VALUES
+(8, 3, 113, 3, 63);
 
 -- --------------------------------------------------------
 
@@ -122,7 +128,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `customer_address`, `customer_image`) VALUES
-(3, 'Renad', 'renad@customer.com', '$2y$10$/mi9vHutUFz.HjH2cDCepOdyHZ3D.3IZNyWY.rRy76G926yXbZtUK', 2147483647, 'Saudi Arabia - Jeddah', 'cop and babe.png');
+(3, 'Renad', 'renad@customer.com', '$2y$10$/mi9vHutUFz.HjH2cDCepOdyHZ3D.3IZNyWY.rRy76G926yXbZtUK', 2147483647, 'Saudi Arabia - Jeddah', 'captainMarvel.png');
 
 -- --------------------------------------------------------
 
@@ -235,8 +241,7 @@ CREATE TABLE `premades` (
 --
 
 INSERT INTO `premades` (`premade_id`, `premade_img`, `premade_price`, `premade_size`, `premade_color`, `premade_name`, `premade_description`, `premade_tailor_name`, `tailor_id`) VALUES
-(113, 'Sanchez.png', '200', 'L', '#000000', 'item', 'Whatever Descriptioon Whatever Descriptioon Whatever Descriptioon Whatever Descriptioon Whatever Descriptioon Whatever Descriptioon Whatever Descriptioon Whatever Descriptioon Whatever Descriptioon Whatever Descriptioon Whatever Descriptioon ', 'Hanan', 63),
-(116, 'cooking with MS.png', '250', 'M', '#000000', 'T-Shirt', 'this is a description', 'Renad', 63);
+(113, 'Sanchez.png', '200', 'L', '#000000', 'item', 'Whatever Description Whatever Description ', 'Hanan', 63);
 
 -- --------------------------------------------------------
 
@@ -352,7 +357,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `cart_items_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cart_items_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `contact`
